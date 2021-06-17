@@ -1,0 +1,12 @@
+.item {
+    /*transform: rotateX(180deg);*/
+    padding: 20px;
+    /*margin: 20px;*/
+    border: 20px solid;
+    min-height: 100px;
+    width: 100px;
+    /*box-sizing: border-box;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

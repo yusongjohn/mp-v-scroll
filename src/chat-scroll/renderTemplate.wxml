@@ -1,0 +1,19 @@
+<view
+  wx:for="{{group.data}}"
+  wx:key="_key"
+  wx:for-item="item"
+  wx:for-index="index"
+  id="content-row-{{group.id}}-{{index}}"
+  class="content-row transform-zindex-conflict"
+  style="{{styleRepo[item._key]}}"
+>
+  <view class="x_reverse">
+    <!-- 开发者可能会在content-row上设置z-index，ios下由于会与transform冲突,所以新增一个节点避过冲突 -->
+    <!-- https://www.zhangxinxu.com/wordpress/2016/08/safari-3d-transform-z-index -->
+    <list-item
+      recordIndex="{{chat.calculateIndex(group, groupNums, index, renderedHistorySum)}}"
+      common="{{common}}"
+      itemContent="{{item.content}}"
+    />
+  </view>
+</view>

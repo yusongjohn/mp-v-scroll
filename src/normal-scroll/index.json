@@ -1,0 +1,6 @@
+{
+  "componentGenerics": {
+    "load-more": true,
+    "list-item": true
+  }
+}

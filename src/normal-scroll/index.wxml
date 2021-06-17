@@ -1,0 +1,57 @@
+<wxs module="chat" src="./v-scroll.wxs"></wxs>
+<block>
+  <view style="position: relative; flex: 1">
+    <scroll-view
+      id="scroll-container-{{componentFlag}}"
+      class="scroll-view-ele"
+      scroll-y="{{true}}"
+      scroll-top="{{scrollTop}}"
+      scroll-anchoring="{{true}}"
+      scroll-with-animation="{{true}}"
+      scroll-into-view="{{viewId}}"
+      enhanced="{{true}}"
+      bounces="{{false}}"
+      data-rendered-groupids="{{renderedGroupIds}}"
+      data-ideal-mode="{{idealMode}}"
+      updateHeightFlag="{{updateHeightFlag}}"
+      clearingids="{{clearingGroupIds}}"
+      renderingids="{{renderedGroupIds}}"
+      change:clearingids="{{chat.clearingHandle}}"
+      change:renderingids="{{chat.renderingHandle}}"
+      change:updateHeightFlag="{{chat.updateHeight}}"
+      bindscroll="{{chat.scrollHandler}}"
+      bindscrolltolower="onScroll2Bottom">
+      <slot wx:if="{{status === 'EMPTY_LIST'}}"></slot>
+      <block wx:else>
+        <view
+          wx:for="{{renderedNextGroups}}"
+          wx:for-item="group"
+          wx:key="id"
+          group="{{group}}"
+          id="piece-container-{{group.id}}"
+          class="piece-container {{group.id % 2 === 0 ? 'even' : 'odd'}} {{group.data.length === 0 ? 'empty' : ''}}  {{group.dispose ? 'dispose' :''}}"
+          style="background-image:url('{{groupSkeletonImg}}');{{styleRepo[group.id]}}">
+          <view
+            wx:for="{{group.data}}"
+            wx:key="_key"
+            wx:for-item="item"
+            wx:for-index="index"
+            id="content-row-{{group.id}}-{{index}}"
+            class="content-row"
+            style="{{styleRepo[item._key]}}">
+            <list-item
+              recordIndex="{{chat.calculateIndex(group, groupNums, index, renderedHistorySum)}}"
+              common="{{common}}"
+              itemContent="{{item.content}}"/>
+          </view>
+        </view>
+      </block>
+      <load-more
+        class="prefix-load-more {{isLoadingNext ? '' : 'load-more-max-height' }}"
+        id="load-more-container"
+        isLoading="{{isLoadingNext}}"
+        isLoaded="{{isLoadingNextDone}}"
+      />
+    </scroll-view>
+  </view>
+</block>

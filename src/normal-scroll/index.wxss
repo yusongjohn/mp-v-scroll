@@ -1,0 +1,79 @@
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.next-item-wrapper .content-row .x_reverse {
+  transform: none;
+}
+
+.scroll-container {
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.scroll-view-ele {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.prefix-load-more {
+  transition: max-height 0.1s;
+  max-height: 300rpx;
+}
+
+.load-more-max-height {
+  max-height: 0;
+}
+
+.piece-container {
+  position: relative;
+  background-size: 0;
+  background-repeat: no-repeat;
+  transition: height 0.5s;
+  overflow: hidden;
+}
+
+.piece-container.dispose {
+  transition: none;
+}
+
+.piece-container.not-empty {
+  /*min-height: initial !important;*/
+}
+
+.piece-container.empty {
+  background-size: 100%;
+  background-repeat: repeat-y;
+}
+
+.history-item-wrapper {
+  position: relative;
+}
+
+.content-row {
+  word-break: break-all;
+}
+
+.transform-zindex-conflict {
+  perspective: 1rpx;
+}
+
+.group_loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-bg-image-color {
+  background-color: white;
+}

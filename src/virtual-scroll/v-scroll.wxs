@@ -1,0 +1,85 @@
+// 每一个 .wxs 文件和 <wxs> 标签都是一个单独的模块，就像是block。 每个模块都有自己独立的作用域
+var throttleTime = 500
+var throttle = null
+var updateHeight = null
+var idealMode = undefined
+
+function generateThrottleFun (instance) {
+  if (!throttle) {
+    throttle = function (callback, limit) {
+      var waiting = false;
+      return function (arguObj) {
+        if (!waiting) {
+          callback(arguObj)
+          waiting = true;
+          instance.setTimeout(function () {
+            waiting = false;
+          }, limit);
+        }
+      }
+    }
+  }
+
+  if (!updateHeight) {
+    updateHeight = throttle(function (ownerInstance) {
+      var scrollView = ownerInstance.selectComponent('.scroll-view-ele')
+      var data = scrollView.getDataset()
+      var renderedGroupids = data.renderedGroupids
+      setGroupHeightDynamic(renderedGroupids, ownerInstance)
+    }, throttleTime)
+  }
+}
+
+function setGroupHeightDynamic (renderingGroupIds, ownerInstance) {
+  renderingGroupIds.forEach(function (groupId) {
+    var pieceContainer = ownerInstance.selectComponent('#piece-container-' + groupId)
+    var res = pieceContainer && pieceContainer.getComputedStyle(['height'])
+    if (res && res.height) {
+      var maxHeight = parseInt(res.height) + 1000 + 'px' // 高度大于一瓶 足够视口区域的内容发挥了
+      pieceContainer.setStyle({ 'min-height': '0' })
+      pieceContainer.setStyle({ 'max-height': maxHeight })
+    }
+  })
+}
+
+function updateHeightWrapper (ownerInstance) {
+  if (idealMode === undefined) {
+    var scrollView = ownerInstance.selectComponent('.scroll-view-ele')
+    var data = scrollView.getDataset()
+    idealMode = data.idealMode
+  }
+
+  if (idealMode) {
+    return
+  }
+  generateThrottleFun(ownerInstance)
+  updateHeight && updateHeight(ownerInstance)
+}
+
+module.exports = {
+  clearingHandle: function (clearingGroupIds, oldV, ownerInstance) {
+    clearingGroupIds.forEach(function (groupId) {
+      var pieceContainer = ownerInstance.selectComponent('#piece-container-' + groupId)
+      var res = pieceContainer && pieceContainer.getComputedStyle(['height'])
+      if (res && res.height !== '0px') {
+        pieceContainer.setStyle({ 'min-height': res.height, 'max-height': res.height })
+      }
+    })
+  },
+  renderingHandle: function (renderingGroupIds, oldGroup, ownerInstance) {
+    setGroupHeightDynamic(renderingGroupIds, ownerInstance)
+  },
+  updateHeight: function (newV, oldV, ownerInstance) {
+    updateHeightWrapper(ownerInstance)
+  },
+  scrollHandler: function (event, ownerInstance) {
+    updateHeightWrapper(ownerInstance)
+  },
+  calculateIndex: function (group, groupNums, index, renderedHistorySum) {
+    if (group.id > 0) { // 历史区域
+      return renderedHistorySum - ((group.id - 1) * groupNums + index) - 1
+    }
+
+    return renderedHistorySum + (-group.id) * groupNums + index
+  }
+}

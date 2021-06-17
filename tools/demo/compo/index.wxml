@@ -1,0 +1,4 @@
+<view class="item" style="height:{{itemContent.height}}px">
+    <image wx:if="{{itemContent.url}}" src="{{itemContent.url}}"></image>
+    <view wx:else>{{itemContent.content}} {{itemContent.height}}</view>
+</view>
