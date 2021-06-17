@@ -1,0 +1,19 @@
+<view style=" padding-top: 10rpx;">
+    <view style="display: flex;flex-wrap: wrap;">
+        <view bindtap="appendNextList" class="span">1. appendNextList</view>
+        <view bindtap="deleteRecords" class="span">2. deleteRecords</view>
+        <view bindtap="updateRecords" class="span">3. updateRecords</view>
+        <view bindtap="insertBeforeTargetRecord" class="span">4. insertBeforeTargetRecord</view>
+        <view bindtap="scrollToTop" class="span">5. scrollToTop</view>
+        <view bindtap="scrollToBottom" class="span">6. scrollToBottom</view>
+        <view bindtap="scrollToTarget" class="span">7. scrollToTarget</view>
+    </view>
+
+
+    <normal-scroll
+            id="scroll-view"
+            groupNums="20"
+            componentFlag="{{componentFlag}}"
+            generic:load-more="load-more"
+            generic:list-item="compo"/>
+</view>

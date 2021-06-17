@@ -1,9 +1,5 @@
 {
   "navigationBarTitleText": "normal page index",
   "usingComponents": {
-    "compo": "../../compo/index",
-    "load-more": "../../load-more/index",
-    "chat-scroll": "../../components/chat-scroll/index",
-    "normal-scroll": "../../components/normal-scroll/index"
   }
 }

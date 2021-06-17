@@ -1,0 +1,24 @@
+#scroll-view {
+    position: absolute;
+    top: 100px;
+    height: 80%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    /*transform: rotateX(180deg);*/
+}
+
+.span{
+    display: inline-block;
+    margin-left: 10rpx;
+    border: 1px solid;
+    margin-top: 10rpx;
+    font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    background-color: red;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+}

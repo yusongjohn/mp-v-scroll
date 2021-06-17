@@ -1,17 +1,6 @@
 <view style=" padding-top: 10rpx;">
-    <view style="display: flex;flex-wrap: wrap;">
-        <view bindtap="appendNextList" class="span">appendNextList</view>
-        <view bindtap="deleteRecords" class="span">deleteRecords</view>
-        <view bindtap="updateRecords" class="span">updateRecords</view>
-        <view bindtap="insertBeforeTargetRecord" class="span">insertBeforeTargetRecord</view>
-        <view bindtap="insertBeforeTargetRecord" class="span">insertBeforeTargetRecord</view>
-    </view>
 
+    <navigator url="/pages/chat-scene/index">chat-scene 长列表</navigator>
 
-    <chat-scroll
-            id="scroll-view"
-            groupNums="20"
-            componentFlag="{{componentFlag}}"
-            generic:load-more="load-more"
-            generic:list-item="compo"/>
+    <navigator url="/pages/normal-scene/index">normal-scene 长列表</navigator>
 </view>
