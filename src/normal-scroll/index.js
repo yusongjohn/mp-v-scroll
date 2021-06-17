@@ -2,6 +2,9 @@ import IndexBv from '../virtual-scroll/behavior/index'
 import {SCROLL_TYPE} from '../virtual-scroll/utils/constant'
 
 Component({
+  options: {
+    multipleSlots: true
+  },
   behaviors: [IndexBv],
   lifetimes: {
     created() {

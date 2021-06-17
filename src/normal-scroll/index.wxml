@@ -21,6 +21,7 @@
       change:updateHeightFlag="{{chat.updateHeight}}"
       bindscroll="{{chat.scrollHandler}}"
       bindscrolltolower="onScroll2Bottom">
+      <slot name="before"></slot>
       <slot wx:if="{{status === 'EMPTY_LIST'}}"></slot>
       <block wx:else>
         <view
@@ -52,6 +53,7 @@
         isLoading="{{isLoadingNext}}"
         isLoaded="{{isLoadingNextDone}}"
       />
+      <slot name="after"></slot>
     </scroll-view>
   </view>
 </block>

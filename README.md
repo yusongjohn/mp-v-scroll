@@ -46,6 +46,11 @@
 - list-item
 - load-more
 
+## slots
+只有normal-scroll 才有
+- before
+- after
+
 # chat-scroll & normal-scroll 区别
 - 后者没有 insertHistoryList 能力
 - 前者滚动到顶部的事件名称：`GET_HISTORY_${componentFlag}` 后者： `SCROLL_BOTTOM_${componentFlag}`

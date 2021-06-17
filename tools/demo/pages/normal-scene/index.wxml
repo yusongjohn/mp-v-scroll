@@ -15,5 +15,8 @@
             groupNums="20"
             componentFlag="{{componentFlag}}"
             generic:load-more="load-more"
-            generic:list-item="compo"/>
+            generic:list-item="compo">
+        <view slot="before"> before slot </view>
+        <view slot="after"> after slot </view>
+    </normal-scroll>
 </view>
