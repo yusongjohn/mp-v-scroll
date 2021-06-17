@@ -7,6 +7,7 @@ let count = 0
 let removeCount = 0
 const componentFlag = 'any_not_repeated_str'
 Page({
+  // data上没有列表，否则会将列表传递到渲染层
   data: {
     componentFlag,
   },
@@ -34,13 +35,24 @@ Page({
     const height = items[0].height || 0
     const scroll = this.selectComponent('#scroll-view')
     items[0].height = height + 100
+    // 更新列表项
     scroll.updateRecords([items[0]])
   },
-  removeElement() {
+  deleteRecords() {
     const scroll = this.selectComponent('#scroll-view')
     scroll.deleteRecords([items[removeCount++]])
   },
-  addElement() {
+  insertBeforeTargetRecord() {
+    const scroll = this.selectComponent('#scroll-view')
+    const beforeList = [{
+      id: 'insertBeforeTargetRecord 1',
+      content: 'insertBeforeTargetRecord 1'
+    },
+    {id: 'insertBeforeTargetRecord 2', content: count + 'insertBeforeTargetRecord 2'}]
+    // 尾部追加列表项
+    scroll.insertBeforeTargetRecord(items[0], beforeList)
+  },
+  appendNextList() {
     const scroll = this.selectComponent('#scroll-view')
     const beforeList = [{
       id: 'item_id_' + --count,
@@ -48,6 +60,7 @@ Page({
       url: 'https://baike-med-dev-1256891581.file.myqcloud.com/wz_cmp/21501202/2fe1e4b0-b2ff-11eb-b747-87c53b3f4535.png!300x'
     },
     {id: 'item_id_' + --count, content: count + '_content'}]
+    // 尾部追加列表项
     scroll.appendNextList(beforeList)
   }
 })

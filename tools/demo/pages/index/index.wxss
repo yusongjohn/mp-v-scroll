@@ -1,6 +1,6 @@
 #scroll-view {
     position: absolute;
-    top: 50px;
+    top: 100px;
     height: 80%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.1);
@@ -10,6 +10,8 @@
 .span{
     display: inline;
     margin-left: 30rpx;
+    border: 1px solid;
+    margin-top: 10rpx;
 }
 
 ::-webkit-scrollbar {

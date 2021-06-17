@@ -1,7 +1,12 @@
-<view>
-    <view bindtap="addElement" class="span">addElement</view>
-    <view bindtap="removeElement" class="span">removeElement</view>
-    <view bindtap="setHeight" class="span">setHeight</view>
+<view style=" padding-top: 10rpx;">
+    <view style="display: flex;flex-wrap: wrap;">
+        <view bindtap="appendNextList" class="span">appendNextList</view>
+        <view bindtap="deleteRecords" class="span">deleteRecords</view>
+        <view bindtap="updateRecords" class="span">updateRecords</view>
+        <view bindtap="insertBeforeTargetRecord" class="span">insertBeforeTargetRecord</view>
+        <view bindtap="insertBeforeTargetRecord" class="span">insertBeforeTargetRecord</view>
+    </view>
+
 
     <chat-scroll
             id="scroll-view"
