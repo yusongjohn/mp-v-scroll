@@ -32,8 +32,13 @@ function generateThrottleFun (instance) {
 
 function setGroupHeightDynamic (renderingGroupIds, ownerInstance) {
   renderingGroupIds.forEach(function (groupId) {
-    var pieceContainer = ownerInstance.selectComponent('#piece-container-' + groupId)
-    var res = pieceContainer && pieceContainer.getComputedStyle(['height'])
+    var domId = '#piece-container-' + groupId
+    var pieceContainer = ownerInstance.selectComponent(domId)
+    if (!pieceContainer || !pieceContainer.getComputedStyle) {
+      return
+    }
+
+    var res = pieceContainer.getComputedStyle(['height'])
     if (res && res.height) {
       var maxHeight = parseInt(res.height) + 1000 + 'px' // 高度大于一瓶 足够视口区域的内容发挥了
       pieceContainer.setStyle({ 'min-height': '0' })
@@ -58,15 +63,25 @@ function updateHeightWrapper (ownerInstance) {
 
 module.exports = {
   clearingHandle: function (clearingGroupIds, oldV, ownerInstance) {
+    if (clearingGroupIds.length === 0) {
+      return
+    }
+
     clearingGroupIds.forEach(function (groupId) {
       var pieceContainer = ownerInstance.selectComponent('#piece-container-' + groupId)
-      var res = pieceContainer && pieceContainer.getComputedStyle(['height'])
+      if (!pieceContainer || !pieceContainer.getComputedStyle) {
+        return
+      }
+      var res = pieceContainer.getComputedStyle(['height'])
       if (res && res.height !== '0px') {
         pieceContainer.setStyle({ 'min-height': res.height, 'max-height': res.height })
       }
     })
   },
   renderingHandle: function (renderingGroupIds, oldGroup, ownerInstance) {
+    if (renderingGroupIds.length === 0) {
+      return
+    }
     setGroupHeightDynamic(renderingGroupIds, ownerInstance)
   },
   updateHeight: function (newV, oldV, ownerInstance) {

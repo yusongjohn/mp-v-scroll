@@ -92,6 +92,7 @@ module.exports = {
     'window': true,
     'document': true,
     'App': true,
+    'getApp': true,
     'Page': true,
     'Component': true,
     'Behavior': true,

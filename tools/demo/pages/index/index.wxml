@@ -3,8 +3,10 @@
     <view bindtap="removeElement" class="span">removeElement</view>
     <view bindtap="setHeight" class="span">setHeight</view>
 
-    <scroll id="scroll-view"
+    <chat-scroll
+            id="scroll-view"
             groupNums="20"
-            generic:list-item="compo"
-    ></scroll>
+            componentFlag="{{componentFlag}}"
+            generic:load-more="load-more"
+            generic:list-item="compo"/>
 </view>

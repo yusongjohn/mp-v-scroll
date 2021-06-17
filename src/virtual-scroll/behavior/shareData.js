@@ -1,1 +1,1 @@
-export const globalComponentFlags = [];
+export const globalComponentFlags = []

@@ -1,0 +1,65 @@
+.loading-warp {
+    padding: 48rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.text {
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: rgba(0, 0, 0, 0.25);
+    letter-spacing: 0;
+    line-height: 34rpx;
+    text-align: center;
+    flex: none;
+    margin: 0 24rpx;
+    display: inline-block;
+    position: relative;
+}
+
+.line {
+    flex: 1;
+    height: 1rpx;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.dotting i {
+    height: 8rpx;
+    width: 8rpx;
+    border-radius: 4rpx;
+    margin-right: 12rpx;
+    background-color: #B8BFC4;
+    display: inline-block;
+    opacity: 0;
+    vertical-align: middle;
+}
+
+.dotting {
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.dotting i:nth-child(1) {
+    animation: dot 1.5s -1s infinite step-start both;
+}
+
+.dotting i:nth-child(2) {
+    animation: dot 1.5s -.5s infinite step-start both;
+}
+
+.dotting i:nth-child(3) {
+    animation: dot 1.5s 0s infinite step-start both;
+    margin-right: 0px;
+}
+
+@keyframes dot {
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

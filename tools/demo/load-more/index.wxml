@@ -1,0 +1,15 @@
+<view wx:if="{{isLoading || isLoaded}}" class="loading-warp">
+    <block wx:if="{{isLoaded}}">
+        <view class="line"></view>
+        <view class="text">已经到底喽~</view>
+        <view class="line"></view>
+    </block>
+    <block wx-else="{{isLoading}}">
+        <view class="dotting">
+            <i/>
+            <i/>
+            <i/>
+        </view>
+        <view class="text">正在加载更多</view>
+    </block>
+</view>
