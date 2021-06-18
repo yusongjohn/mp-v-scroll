@@ -61,7 +61,7 @@
 - 最佳实践应该是（针对图片场景）：根据每个图片的特征固定好<image>的高度：比如在医患会话场景中，用户上传图片的时候就记录好图片的高宽比以及原始高度等信息，在显示的时候用css显示设置<image>高度。
 - 如果长列表组件有重新挂载的场景，目前由于reset方法只会清理数据，队友渲染层的wxs文件中的信息未做清理，因此如果有重新挂载场景则可以先卸载再挂载组件
 
-# 开发微信小程序第三方组件
-
+# 微信小程序第三方组件的开发和发布以及使用
 - https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/trdparty.html
 - https://github.com/wechat-miniprogram/miniprogram-custom-component
+- https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html#_2-%E6%9E%84%E5%BB%BA-npm
