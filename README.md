@@ -1,12 +1,14 @@
 【小程序长列表组件】
 
+# 接入demo
+https://github.com/yusongjohn/mp-v-scroll-example
+
 # 与官方recycle-view的简单对比
 - 支持列表项非等高场景
 - 可以设置骨架效果
 - 针对聊天会话场景做了优化
 
 # 本组件demo运行
-
 1. yarn
 2. yarn dev 或者 yarn watch => 生成 miniprogram_dev
 4. 开发者工具导入该目录
