@@ -77,7 +77,7 @@ export default Behavior({
       this.listenedObservers = []
       this.setRendering = false
       this.latestRenderGroupId = Number.MAX_SAFE_INTEGER
-      this._throttleRemoveOutOfScreenData = throttle(this._removeOutOfScreenData.bind(this), 3000)
+      this._throttleRemoveOutOfScreenData = throttle(this._removeOutOfScreenData.bind(this), 1000)
       this._updateHeightFlagCb = () => {
         const {updateHeightFlag} = this.data
         this._setDataWrapper({updateHeightFlag: !updateHeightFlag})
