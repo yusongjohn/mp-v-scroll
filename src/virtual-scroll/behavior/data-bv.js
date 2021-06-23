@@ -87,7 +87,7 @@ export default Behavior({
       this._addDefaultListener()
     },
     detached() {
-      this.resetData()
+      this.reset()
       this._removeDefautListener()
     },
   },
@@ -113,22 +113,26 @@ export default Behavior({
       globalComponentFlags.push(componentFlag)
       addEventListener(eventName, this._updateHeightFlagCb)
     },
-    resetData() {
-      this.setRendering = false
-      this.listenedGroupIds = []
-      this.latestRenderGroupId = Number.MAX_SAFE_INTEGER
-      this.listenedObservers.forEach(observer => observer.disconnect())
-      this.listenedObservers = []
-      return this._setDataWrapper({
-        updateHeightFlag: false,
-        renderedGroupIds: [],
-        clearingGroupIds: [],
-        styleRepo: {},
-        scrollTop: 0,
-        currentGroupId: INITIAL_CURRENT_GROUP,
-        isLoadingHistory: false,
-        isLoadingHistoryDone: false,
-      })
+    getResetData() {
+      this.listenedObservers.forEach(observer => observer.disconnect());
+      return {
+        logicData: {
+          setRendering: false,
+          listenedGroupIds: [],
+          latestRenderGroupId: Number.MAX_SAFE_INTEGER,
+          listenedObservers: [],
+        },
+        renderData: {
+          updateHeightFlag: false,
+          renderedGroupIds: [],
+          clearingGroupIds: [],
+          styleRepo: {},
+          scrollTop: 0,
+          currentGroupId: INITIAL_CURRENT_GROUP,
+          isLoadingHistory: false,
+          isLoadingHistoryDone: false,
+        },
+      };
     },
   },
 })

@@ -2,6 +2,7 @@ import {COMPONENT_STATUS, SCROLL_CONTAINER_ID, SCROLL_TYPE} from '../utils/const
 
 export default Behavior({
   methods: {
+    // 支持重复init(后面的会清空前面的
     init(initList = []) {
       let initMethodName = ''
       if (this.scrollType === SCROLL_TYPE.CHAT) {
@@ -15,9 +16,12 @@ export default Behavior({
       if (!groupIds || groupIds.length === 0) {
         statusData = {status: COMPONENT_STATUS.EMPTY_LIST}
       }
-      const data = Object.assign(renderData, statusData)
-      this._addDefaultListener()
-      return this._setDataWrapper(data, () => this._createObserver(groupIds))
+      const { renderData: resetRenderData, logicData: resetLogicData } = this.getResetData();
+      // 重置渲染层遗留数据
+      const data = Object.assign({}, resetRenderData, renderData, statusData);
+      // 重置逻辑层相关数据
+      Object.assign(this, resetLogicData);
+      return this._setDataWrapper(data, () => this._createObserver(groupIds));
     },
     updateRecords(updateRecords = []) {
       const updateData = this.fuse.updateRecords(updateRecords)
@@ -117,7 +121,9 @@ export default Behavior({
       return this._setDataWrapper(renderData, () => this._createObserver(groupIds))
     },
     reset() {
-      return this.resetData()
+      const {renderData, logicData} = this.getResetData()
+      Object.assign(this, logicData)
+      return this._setDataWrapper(renderData)
     },
   },
 })
