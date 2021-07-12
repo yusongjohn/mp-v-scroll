@@ -50,7 +50,7 @@ export default class Fuse {
       const renderKeyName = groupId > 0 ? 'renderedHistoryGroups' : 'renderedNextGroups'
       const renderedGroups = groupId > 0 ? renderedHistoryGroups : renderedNextGroups
       const indexInRender = this.getIndexWithGroupIdInRendered(groupId)
-      if (renderedGroups[indexInRender].data.length !== 0) {
+      if (renderedGroups[indexInRender] && renderedGroups[indexInRender].data.length !== 0) {
         validClearingGroupIds.push(groupId)
         renderData[`${renderKeyName}[${indexInRender}].data`] = []
       }
